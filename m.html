@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <style>
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            font-family: Rockwell;
+            font-size: 25px;
+            color: #66FFFF;
+            background-color: #CCFFE5; /* This line sets the background color */
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #background-video {
+            position: relative;
+            bottom: 500px;
+            width: 100%;
+            height: 150%;
+            z-index: -10;
+            background-size: cover;
+        }
+
+
+
+        #username {
+            width: 300px; /* Change this to the width you want */
+            height: 15px; /* Change this to the height you want */
+            font-weight: bold;
+            color: blue;
+            background-color: #FFFFCC;            
+        }
+
+        #email {
+            width: 300px; /* Change this to the width you want */
+            height: 15px; /* Change this to the height you want */
+            font-weight: bold;
+            color: blue;
+            background-color: #FFFFCC;
+        }
+
+        input[type="submit"] {
+            background-color: #FFCCE5;
+            color: #660033;
+            font-weight: bold;
+            padding: 20px 40px;
+            border: 5px solid #3333FF;
+            cursor: pointer;
+            width: 25%;
+            opacity: 0.9;
+        }
+
+    </style>    
+</head>
+
+<body>
+    <h1 style="text-align: center; margin-top: 100px; font-size: 40px; color: #FF007F; font-family: Broadway; font-weight: bold; ">LOGIN PAGE </h1>
+    <form id="settingsForm">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email" required><br><br>
+        <input type="submit" value="SUBMIT">
+    </form>
+    <script>
+        window.onload = function () {
+            var form = document.getElementById('settingsForm');
+
+            form.onsubmit = function (e) {
+                e.preventDefault();
+
+                var username = document.getElementById('username').value;
+                var email = document.getElementById('email').value;
+
+                // Save settings to localStorage
+                localStorage.setItem('username', username);
+                localStorage.setItem('email', email);
+
+
+                // Create new.html
+                var newHtmlContent = `
+                                                    <!DOCTYPE html>
+                                                    <html>
+                                                    <head>
+                                                        <title>New Page</title>
+                                                        <style>
+                                                        body {
+                                                                font-family: Arial, sans-serif; /* Change the font of all text */
+                                                                color: #FF0000; /* Change the color of all text */
+                                                                font-size: 50px;
+                                                                background-color: #FFFF99;
+                                                                font-weight: bold;
+                                                                background-image: url("https://marketplace.canva.com/EAEthkBVLfQ/1/0/1600w/canva-blush-wave-desktop-wallpaper-drvq3zaYl2E.jpg");
+                                                                background-size: cover;
+                                                                background-position: center;
+                                                                background-repeat: no-repeat;
+                                                                font-weight: bold;
+                                                                background-color: #FFFF99;
+                                                             }
+                                                        </style>
+                                                        </head>
+                                                        <body>
+                                                            <h1 style="text-align: center; margin-top: 100px; font-size: 60px; color: #FF8000; font-family: Matura MT Script Capitals; font-weight: bold; ">Welcome, ${username}!</h1>
+                                                            <p>Your email: ${email}</p>
+                                                            <center><img width="1000" height="500" src="https://upload.wikimedia.org/wikipedia/commons/1/15/Cat_August_2010-4.jpg" width="300px" height="250px" alt="MIMI"/></center>
+                                                            <center><iframe width="1000" height="500" src="https://www.youtube.com/embed/nVbm5nImTj0?si=vu-tx9YqIbSiYNSZ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+                                                        </body>
+                                                    </html>
+                                                    `;
+
+
+
+                var blob = new Blob([newHtmlContent], { type: 'text/html' });
+                var url = URL.createObjectURL(blob);
+                window.location.href = url;
+            };
+        };
+
+    </script>
+
+    <video autoplay loop muted id="background-video">
+        <source src="bv2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+</body>
+</html>
